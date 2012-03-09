@@ -16,10 +16,14 @@ object Application extends Controller {
   }
  
   def tasks = Action {
-	Ok(views.html.index(Task.all(), taskForm ))
+	Ok(views.html.i2(Task.all(), taskForm )) 
   }
 	
-
+  def buttonTask(r : Int, c : Int) = Action {
+	  Board.jump(r, c)
+	  Redirect (routes.Application.tasks)
+  }
+  
   def newTask = Action { implicit request =>
   	taskForm.bindFromRequest .fold(
   		errors => BadRequest (views.html.index(Task.all(), errors)),
@@ -30,10 +34,14 @@ object Application extends Controller {
 	  )
   }
 
-
+  def resetTask = Action {
+	  Board.reset
+	  Redirect (routes.Application.tasks)
+  }
+  
   def deleteTask (id: Long) = Action {
 	  Task.delete(id)
-	  Redirect (routes.Application .tasks)
+	  Redirect (routes.Application.tasks)
   }
 
 

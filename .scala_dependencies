@@ -2,19 +2,29 @@
 -------
 /home/user1/play_projects/knight_tour/app/models/Task.scala -> /home/user1/play_projects/knight_tour/app/models/Task.scala
 /home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/app/models/Task.scala
+/home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/app/models/Board.scala
 /home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/app/controllers/Application.scala
+/home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/app/models/Board.scala
 -------
 /home/user1/play_projects/knight_tour/app/models/Task.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Task.class
 /home/user1/play_projects/knight_tour/app/models/Task.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Task$$anonfun$delete$1.class
 /home/user1/play_projects/knight_tour/app/models/Task.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Task$.class
 /home/user1/play_projects/knight_tour/app/models/Task.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Task$$anonfun$all$1.class
+/home/user1/play_projects/knight_tour/app/models/Task.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Task$$anonfun$2.class
 /home/user1/play_projects/knight_tour/app/models/Task.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Task$$anonfun$create$1.class
 /home/user1/play_projects/knight_tour/app/models/Task.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Task$$anonfun$1.class
 /home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application$$anonfun$newTask$1$$anonfun$apply$1.class
+/home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application$$anonfun$buttonTask$1.class
 /home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application$$anonfun$tasks$1.class
 /home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application.class
+/home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application$$anonfun$resetTask$1.class
 /home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application$$anonfun$newTask$1.class
 /home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application$$anonfun$newTask$1$$anonfun$apply$2.class
 /home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application$$anonfun$index$1.class
 /home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application$.class
 /home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application$$anonfun$deleteTask$1.class
+/home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Square$.class
+/home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Square.class
+/home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Board$$anonfun$makeCleanBoard$1.class
+/home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Board$.class
+/home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Board.class

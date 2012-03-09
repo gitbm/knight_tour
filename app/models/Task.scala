@@ -30,4 +30,11 @@ object Task {
 			SQL("delete from task where id = {id}").on('id -> id).executeUpdate ()
 		}
 	}
+	
+//	def makeTable = {
+//	  var s = <tab
+	  for (i <- 1 to 8) {
+//	    
+//	  }
+	}
 }

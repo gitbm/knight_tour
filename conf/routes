@@ -8,6 +8,8 @@ GET     /                           controllers.Application.index
 GET 	/tasks 						controllers.Application.tasks
 POST 	/tasks 						controllers.Application.newTask
 POST 	/tasks/:id/delete 			controllers.Application.deleteTask(id: Long)
+POST 	/tasks/button/:r/:c 		controllers.Application.buttonTask(r: Int, c: Int)
+POST 	/tasks/reset				controllers.Application.resetTask
 
 
 # Map static resources from the /public folder to the /assets URL path
