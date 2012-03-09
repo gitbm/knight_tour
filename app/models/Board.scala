@@ -5,41 +5,45 @@ import play.api.mvc._
 import play.api.data._
 import play.api.data.Forms._
 
-case class Square(used : Boolean, num : Int)
+case class CoOrds(row : Int, col : Int) {
+  def abs(i : Int) = if (i < 0) -i else i
+  def diff(other : CoOrds) = CoOrds(abs(row - other.row), abs(col - other.col))
+}
+
+class Board(rows : Int, cols: Int) {  
+  var board : Array[Array[Option[Int]]] = _
+ 
+  def reset { board = Array.fill(rows, rows)(Option.empty[Int]) }
+  {reset}
+  def apply(coOrds : CoOrds) = board(coOrds.row)(coOrds.col)
+  def update(coOrds : CoOrds, num : Int) {  board(coOrds.row)(coOrds.col) = Some(num) }
+}
 
 object Board {
   
-  { reset }
-  
-  var board : Array[Array[Square]] = _
-  
+  val ROWS = 8
+  val COLUMNS = 8
+
+  var board : Board = new Board(ROWS, COLUMNS)
   var count : Int = _;
-  var currSquare : Pair[Int, Int] = _;
+  var currSquare : Option[CoOrds] = _;
+
+  def init { count = 0; currSquare = None; }
+  {init}
+  def reset { init; board.reset }
   
-  def makeCleanBoard = { Array.fill(8, 8)(Square(false, 0)) }
+  def isKnightMove(diff : CoOrds) = diff == CoOrds(1, 2) || diff == CoOrds(2, 1)
   
-  def reset { count = 0; currSquare = (-1, -1); board = makeCleanBoard }
+  def legalJump(newSquare: CoOrds) = currSquare.map(c => isKnightMove(c.diff(newSquare))).getOrElse(true)
   
-  def get(sq : (Int, Int)) = board(sq._1)(sq._2)
-  
-  def set(sqPr : (Int, Int), sq : Square) = { board(sqPr._1)(sqPr._2) = sq }
-  
-  def abs(i : Int) = if (i < 0) -i else i
-  
-  def legalJump(newSquare : (Int, Int)) = {
-    currSquare._1 < 0 || 
-    (abs(newSquare._1 - currSquare._1) == 2 && abs(newSquare._2 - currSquare._2) == 1) ||
-    (abs(newSquare._1 - currSquare._1) == 1 && abs(newSquare._2 - currSquare._2) == 2)
-  }
-  
-  def jump(newSquare : (Int, Int)) {
-    if (!get(newSquare).used && legalJump(newSquare)) {
+  def jump(newSquare: CoOrds) {
+    if (board(newSquare).isEmpty && legalJump(newSquare)) {
       count += 1
-      currSquare = newSquare
-      set(newSquare, Square(true, count))
+      currSquare = Some(newSquare)
+      board(newSquare) = count
     }
   }
   
-  def getSquareString(r : Int, c : Int) = { val sq = get(r, c); if (sq.used) sq.num.toString else "    " }
+  def getSquareString(coOrds: CoOrds) = board(coOrds).map(_.toString).getOrElse("")
 
 }

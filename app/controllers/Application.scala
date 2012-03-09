@@ -8,41 +8,21 @@ import models._
 
 object Application extends Controller {
   
-  val taskForm = Form("label" -> nonEmptyText)
-	
   def index = Action {
-    //Ok(views.html.index("Your new application is ready."))
-    Redirect(routes.Application.tasks)
+    Redirect(routes.Application.knightTour)
   }
  
-  def tasks = Action {
-	Ok(views.html.i2(Task.all(), taskForm )) 
+  def knightTour = Action {
+	Ok(views.html.index())
   }
 	
-  def buttonTask(r : Int, c : Int) = Action {
-	  Board.jump(r, c)
-	  Redirect (routes.Application.tasks)
+  def jump(r : Int, c : Int) = Action {
+	  Board.jump(CoOrds(r, c))
+	  Redirect (routes.Application.knightTour)
   }
   
-  def newTask = Action { implicit request =>
-  	taskForm.bindFromRequest .fold(
-  		errors => BadRequest (views.html.index(Task.all(), errors)),
-		label => {
-			Task.create(label)
-			Redirect (routes.Application.tasks)
-		}
-	  )
-  }
-
-  def resetTask = Action {
+  def reset = Action {
 	  Board.reset
-	  Redirect (routes.Application.tasks)
+	  Redirect (routes.Application.knightTour)
   }
-  
-  def deleteTask (id: Long) = Action {
-	  Task.delete(id)
-	  Redirect (routes.Application.tasks)
-  }
-
-
 }
