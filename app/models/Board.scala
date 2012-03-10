@@ -5,9 +5,11 @@ import play.api.mvc._
 import play.api.data._
 import play.api.data.Forms._
 
-case class CoOrds(row : Int, col : Int) {
-  def abs(i : Int) = if (i < 0) -i else i
-  def diff(other : CoOrds) = CoOrds(abs(row - other.row), abs(col - other.col))
+case class CoOrds(row: Int, col: Int) {
+  def abs(i: Int) = if (i < 0) -i else i
+  def diff(other: CoOrds) = CoOrds(abs(row - other.row), abs(col - other.col))
+  def add(other: CoOrds) = CoOrds(row + other.row, col + other.col)
+  def swap = CoOrds(col, row)
 }
 
 class Board(rows : Int, cols: Int) {  
@@ -24,6 +26,9 @@ object Board {
   
   val ROWS = 8
   val COLUMNS = 8
+  val KNIGHT_MOVE_TEMPLATE = CoOrds(1, 2)
+  val BASIC_KNIGHT_MOVES = Seq(KNIGHT_MOVE_TEMPLATE, KNIGHT_MOVE_TEMPLATE.swap)
+  val MOVE_PERMUTATIONS = Seq((1, 1), (1, -1), (-1, 1), (-1, -1))
 
   var board : Board = new Board(ROWS, COLUMNS)
   var count : Int = _;
@@ -33,9 +38,26 @@ object Board {
   {init}
   def reset { init; board.reset }
   
-  def isKnightMove(diff : CoOrds) = diff == CoOrds(1, 2) || diff == CoOrds(2, 1)
+  def isKnightMove(start: CoOrds, finish: CoOrds) = BASIC_KNIGHT_MOVES.contains(start.diff(finish)) 
   
-  def legalJump(newSquare: CoOrds) = moves.headOption.map(c => isKnightMove(c.diff(newSquare))).getOrElse(true)
+  def legalJump(newSquare: CoOrds) = moves match {
+      case Nil => true
+      case head::_ => isKnightMove(head, newSquare)
+  }
+      
+  def inRange(num: Int, low: Int, high: Int) = num >= 0 && num < high
+  
+  def legalCoOrds(coOrds : CoOrds) = inRange(coOrds.row, 0, ROWS) && inRange(coOrds.col, 0, COLUMNS) 
+  
+  //def possibleMoves(coOrds: CoOrds) = 
+  
+  def possibleMoves : Int = moves match {
+      case Nil => 64
+      case head::_ => (for (p <- MOVE_PERMUTATIONS; k <- BASIC_KNIGHT_MOVES) 
+                         yield CoOrds(k.row * p._1, k.col * p._2))
+    		                 .map(c => head.add(c)).filter(c => legalCoOrds(c) && board(c).isEmpty).size
+    }
+  
   
   def jump(newSquare: CoOrds) {
     if (board(newSquare).isEmpty && legalJump(newSquare)) {
@@ -46,12 +68,10 @@ object Board {
   }
   
   def undo { 
-    val head = moves.headOption
-    if (head.isDefined) {
-      count -= 1
-      moves = moves.tail
-      board.clear(head.get)
-    }
+      moves = moves match {
+          case Nil => moves
+          case head::tail => { count -= 1; board.clear(head); tail }
+      }
   }
   
   def getSquareString(coOrds: CoOrds) = board(coOrds).map(_.toString).getOrElse("")

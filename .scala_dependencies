@@ -14,10 +14,12 @@
 /home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application$$anonfun$knightTour$1.class
 /home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Board$$anonfun$reset$1.class
 /home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/CoOrds$.class
-/home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Board$$anonfun$legalJump$1.class
 /home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/CoOrds.class
+/home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Board$$anonfun$possibleMoves$3.class
 /home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Board$$anonfun$getSquareString$2.class
-/home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Board$$anonfun$legalJump$2.class
+/home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Board$$anonfun$possibleMoves$2.class
 /home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Board$$anonfun$getSquareString$1.class
+/home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Board$$anonfun$possibleMoves$1.class
 /home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Board$.class
 /home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Board.class
+/home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Board$$anonfun$possibleMoves$1$$anonfun$apply$1.class
