@@ -5,9 +5,11 @@
 /home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/app/models/Board.scala
 -------
 /home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application.class
+/home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application$$anonfun$undo$1.class
 /home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application$$anonfun$reset$1.class
-/home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application$.class
+/home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application$$anonfun$doWithRedirect$1.class
 /home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application$$anonfun$index$1.class
+/home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application$.class
 /home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application$$anonfun$jump$1.class
 /home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application$$anonfun$knightTour$1.class
 /home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Board$$anonfun$reset$1.class

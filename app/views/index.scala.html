@@ -4,6 +4,9 @@
 	@form(routes.Application.reset) {
 		<input type="submit" value="Reset">
 	}
+	@form(routes.Application.undo) {
+		<input type="submit" value="Undo">
+	}
 	<table border="1" >
 	
 	@for(r <- 0 until Board.ROWS) {

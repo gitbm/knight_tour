@@ -17,6 +17,7 @@ class Board(rows : Int, cols: Int) {
   {reset}
   def apply(coOrds : CoOrds) = board(coOrds.row)(coOrds.col)
   def update(coOrds : CoOrds, num : Int) {  board(coOrds.row)(coOrds.col) = Some(num) }
+  def clear(coOrds : CoOrds) { board(coOrds.row)(coOrds.col) = None }
 }
 
 object Board {
@@ -26,21 +27,30 @@ object Board {
 
   var board : Board = new Board(ROWS, COLUMNS)
   var count : Int = _;
-  var currSquare : Option[CoOrds] = _;
+  var moves : List[CoOrds] = _;
 
-  def init { count = 0; currSquare = None; }
+  def init { count = 0; moves = Nil; }
   {init}
   def reset { init; board.reset }
   
   def isKnightMove(diff : CoOrds) = diff == CoOrds(1, 2) || diff == CoOrds(2, 1)
   
-  def legalJump(newSquare: CoOrds) = currSquare.map(c => isKnightMove(c.diff(newSquare))).getOrElse(true)
+  def legalJump(newSquare: CoOrds) = moves.headOption.map(c => isKnightMove(c.diff(newSquare))).getOrElse(true)
   
   def jump(newSquare: CoOrds) {
     if (board(newSquare).isEmpty && legalJump(newSquare)) {
       count += 1
-      currSquare = Some(newSquare)
+      moves ::= newSquare
       board(newSquare) = count
+    }
+  }
+  
+  def undo { 
+    val head = moves.headOption
+    if (head.isDefined) {
+      count -= 1
+      moves = moves.tail
+      board.clear(head.get)
     }
   }
   
