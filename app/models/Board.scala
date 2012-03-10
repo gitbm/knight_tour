@@ -49,14 +49,15 @@ object Board {
   
   def legalCoOrds(coOrds : CoOrds) = inRange(coOrds.row, 0, ROWS) && inRange(coOrds.col, 0, COLUMNS) 
   
-  //def possibleMoves(coOrds: CoOrds) = 
+  def possibleMoves(coOrds: CoOrds) = 
+    (for (p <- MOVE_PERMUTATIONS; k <- BASIC_KNIGHT_MOVES) 
+         yield CoOrds(k.row * p._1, k.col * p._2))
+    		 .map(c => coOrds.add(c)).filter(c => legalCoOrds(c) && board(c).isEmpty)
   
-  def possibleMoves : Int = moves match {
+  def possibleMoves: Int = moves match {
       case Nil => 64
-      case head::_ => (for (p <- MOVE_PERMUTATIONS; k <- BASIC_KNIGHT_MOVES) 
-                         yield CoOrds(k.row * p._1, k.col * p._2))
-    		                 .map(c => head.add(c)).filter(c => legalCoOrds(c) && board(c).isEmpty).size
-    }
+      case head::_ => possibleMoves(head).size
+  }
   
   
   def jump(newSquare: CoOrds) {
@@ -68,10 +69,10 @@ object Board {
   }
   
   def undo { 
-      moves = moves match {
-          case Nil => moves
-          case head::tail => { count -= 1; board.clear(head); tail }
-      }
+    moves = moves match {
+      case Nil => moves
+      case head::tail => { count -= 1; board.clear(head); tail }
+    }
   }
   
   def getSquareString(coOrds: CoOrds) = board(coOrds).map(_.toString).getOrElse("")
