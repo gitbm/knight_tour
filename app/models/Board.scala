@@ -59,6 +59,7 @@ object Board {
       case head::_ => possibleMoves(head).size
   }
   
+  def doNothing { if (count > 3 && count % 2 == 0) reset }
   
   def jump(newSquare: CoOrds) {
     if (board(newSquare).isEmpty && legalJump(newSquare)) {
@@ -76,5 +77,17 @@ object Board {
   }
   
   def getSquareString(coOrds: CoOrds) = board(coOrds).map(_.toString).getOrElse("")
+  
+  def getSquareStyle(coOrds: CoOrds) = moves match {
+    case head::_ if  head == coOrds => "background-color:lightblue"
+    case head::_ if possibleMoves(head).contains(coOrds) => 
+      possibleMoves(coOrds).size match  {
+        case 0 => "background-color:red" 
+        case 1 => // The possible move for two moves ahead will always include the move one ahead
+          if (possibleMoves(possibleMoves(coOrds).head).size == 1) "background-color:pink" else "background-color:lightgreen"
+        case _ => if ( (possibleMoves(coOrds).filter(c => possibleMoves(c).size > 1).size) == 0) "background-color:pink" else "background-color:green"
+      }
+    case _ => ""
+  }
 
 }

@@ -14,7 +14,8 @@
 		@for(c <- 0 until Board.COLUMNS) {
 			<td width=40>
                @form(routes.Application.jump(r, c)) {
-                   <input type="submit" value=@Board.getSquareString(CoOrds(r, c))>
+                   <button style="@Board.getSquareStyle(CoOrds(r, c))" 
+                           type="submit">@Board.getSquareString(CoOrds(r, c))</button>
                }
  			</td>
 		}
