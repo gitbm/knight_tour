@@ -1,26 +1,8 @@
+@()
+
 @import helper._
 
-@main("Todo list") {
-	@form(routes.Application.reset) {
-		<input type="submit" value="Reset">
-	}
-	@form(routes.Application.undo) {
-		<input type="submit" value="Undo">
-	}
-	<h3>Number of possible moves = @Board.possibleMoves</h3>
-	<table border="1" >	
-	@for(r <- 0 until Board.ROWS) {
-		<tr>
-		@for(c <- 0 until Board.COLUMNS) {
-			<td width=40>
-               @form(routes.Application.jump(r, c)) {
-                   <button style="@Board.getSquareStyle(CoOrds(r, c))" 
-                           type="submit">@Board.getSquareString(CoOrds(r, c))</button>
-               }
- 			</td>
-		}
-		</tr>
-	}
-	</table>
+@main("Knight Tour Main") {
+	<h3>Click to start new game <a href="@routes.Application.knightTourMain">link</a></h3>
 }
 

@@ -6,18 +6,21 @@
 -------
 /home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application.class
 /home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application$$anonfun$undo$1.class
+/home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application$$anonfun$knightTourRules$1.class
 /home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application$$anonfun$reset$1.class
 /home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application$$anonfun$doWithRedirect$1.class
-/home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application$$anonfun$index$1.class
+/home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application$$anonfun$knightTourMain$1.class
 /home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application$.class
 /home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application$$anonfun$jump$1.class
 /home/user1/play_projects/knight_tour/app/controllers/Application.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/controllers/Application$$anonfun$knightTour$1.class
-/home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Board$$anonfun$reset$1.class
 /home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/CoOrds$.class
 /home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Board$$anonfun$getSquareStyle$1.class
 /home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/CoOrds.class
 /home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Board$$anonfun$possibleMoves$3.class
+/home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/BoardData$.class
 /home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Board$$anonfun$getSquareString$2.class
+/home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/BoardData.class
+/home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/BoardData$$anonfun$reset$1.class
 /home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Board$$anonfun$possibleMoves$2.class
 /home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Board$$anonfun$getSquareString$1.class
 /home/user1/play_projects/knight_tour/app/models/Board.scala -> /home/user1/play_projects/knight_tour/target/scala-2.9.1/classes/models/Board$$anonfun$possibleMoves$1.class

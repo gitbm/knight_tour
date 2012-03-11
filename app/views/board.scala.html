@@ -1,0 +1,50 @@
+@(id: Int)
+
+@import helper._
+
+@main("Knight Tour") {
+	@if(!Board.validId(id)) {
+	<h1>ID is no longer valid.  <a href="@routes.Application.knightTourMain">Start Again</a></h1>
+	}else{
+	<h2>Knight Tour Solitaire</h2>
+	<table border="0" >	
+		<tr>
+			<td>
+				@form(routes.Application.reset(id)) {
+					<input type="submit" value="Reset">
+				}
+			</td>
+			<td>
+				@form(routes.Application.undo(id)) {
+					<input type="submit" value="Undo">
+				}
+			</td>
+			<td width = "150">
+			</td>
+			<td>
+				<h3><a href="@routes.Application.knightTourRules">Rules</a></h3>
+			</td>
+			
+		</tr>
+	</table>
+	
+	@if(Board.possibleMoves(id) == 0) {
+		<h3>Nowhere else to go but you managed @Board.totalMoves(id) moves.</h3>
+	}
+	<table border="1" >	
+	@for(r <- 0 until Board.ROWS) {
+		<tr>
+		@for(c <- 0 until Board.COLUMNS) {
+			<td width=40>
+               @form(routes.Application.jump(id, r, c)) {
+                   <button style="@Board.getSquareStyle(id, CoOrds(r, c))" 
+                           type="submit">@Board.getSquareString(id, CoOrds(r, c))</button>
+               }
+ 			</td>
+		}
+		</tr>
+	}
+	</table>
+	}
+}
+

@@ -8,18 +8,23 @@ import models._
 
 object Application extends Controller {
   
-  def doWithRedirect(f: => Unit) = Action {
+  def doWithRedirect(id: Int)(f: => Unit) = Action {
     f
-	Redirect(routes.Application.knightTour)
+	Redirect(routes.Application.knightTour(id))
   }
   
-  def index =  doWithRedirect { }
+  def index = knightTourMain//Action { Redirect(routes.Application.knightTourMain) }
+  //def index = Action { Ok(views.html.index()) }
  
-  def knightTour = Action { Ok(views.html.index()) }
-	
-  def jump(r : Int, c : Int) = doWithRedirect { Board.jump(CoOrds(r, c)) }
+  def knightTourMain = Action { Redirect(routes.Application.knightTour(Board.newId)) }
   
-  def reset = doWithRedirect { Board.reset }
+  def knightTourRules = Action {  Ok(views.html.rules()) }
+	
+  def knightTour(id: Int) = Action { Ok(views.html.board(id)) }
+	
+  def jump(id: Int, r : Int, c : Int) = doWithRedirect(id) { Board.jump(id, CoOrds(r, c)) }
+  
+  def reset(id: Int) = doWithRedirect(id) { Board.reset(id) }
 
-  def undo =  doWithRedirect { Board.undo }
+  def undo(id: Int) =  doWithRedirect(id) { Board.undo(id) }
 }

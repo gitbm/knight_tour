@@ -12,8 +12,8 @@ case class CoOrds(row: Int, col: Int) {
   def swap = CoOrds(col, row)
 }
 
-class Board(rows : Int, cols: Int) {  
-  var board : Array[Array[Option[Int]]] = _
+case class BoardData(rows : Int, cols: Int) {  
+  private var board : Array[Array[Option[Int]]] = _
  
   def reset { board = Array.fill(rows, rows)(Option.empty[Int]) }
   {reset}
@@ -22,15 +22,10 @@ class Board(rows : Int, cols: Int) {
   def clear(coOrds : CoOrds) { board(coOrds.row)(coOrds.col) = None }
 }
 
-object Board {
+class Board {
+  import Board._
   
-  val ROWS = 8
-  val COLUMNS = 8
-  val KNIGHT_MOVE_TEMPLATE = CoOrds(1, 2)
-  val BASIC_KNIGHT_MOVES = Seq(KNIGHT_MOVE_TEMPLATE, KNIGHT_MOVE_TEMPLATE.swap)
-  val MOVE_PERMUTATIONS = Seq((1, 1), (1, -1), (-1, 1), (-1, -1))
-
-  var board : Board = new Board(ROWS, COLUMNS)
+  var board = BoardData(ROWS, COLUMNS)
   var count : Int = _;
   var moves : List[CoOrds] = _;
 
@@ -59,7 +54,7 @@ object Board {
       case head::_ => possibleMoves(head).size
   }
   
-  def doNothing { if (count > 3 && count % 2 == 0) reset }
+  def totalMoves = count
   
   def jump(newSquare: CoOrds) {
     if (board(newSquare).isEmpty && legalJump(newSquare)) {
@@ -89,5 +84,34 @@ object Board {
       }
     case _ => ""
   }
+
+}
+object Board {
+  
+  val ROWS = 8
+  val COLUMNS = 8
+  val KNIGHT_MOVE_TEMPLATE = CoOrds(1, 2)
+  val BASIC_KNIGHT_MOVES = Seq(KNIGHT_MOVE_TEMPLATE, KNIGHT_MOVE_TEMPLATE.swap)
+  val MOVE_PERMUTATIONS = Seq((1, 1), (1, -1), (-1, 1), (-1, -1))
+
+  private var boards = Vector[Board]()
+  
+  def newId = { boards :+= new Board(); boards.size - 1 }
+  
+  def validId(id : Int) = boards.isDefinedAt(id)
+  
+  def reset(id: Int) { boards(id).reset }
+  
+  def jump(id: Int, newSquare: CoOrds) { boards(id).jump(newSquare) }
+  
+  def undo(id: Int) { boards(id).undo }
+  
+  def possibleMoves(id: Int) = boards(id).possibleMoves
+
+  def totalMoves(id: Int) = boards(id).count
+
+  def getSquareString(id: Int, coOrds: CoOrds) = boards(id).getSquareString(coOrds)
+  
+  def getSquareStyle(id: Int, coOrds: CoOrds) = boards(id).getSquareStyle(coOrds)
 
 }

@@ -1,0 +1,24 @@
+@()
+
+@import helper._
+
+@main("Knight Tour Rule") {
+	<h1>Knight Tour Rules</h1>
+	<ul>
+		<li>Move around the board like a knight chess piece.</li> 
+		<li>You can't land on a position you have already been.</li>
+		<li>Try to see the most number of moves you can make.  </li>
+		<li>All 64 is possible (or so I have read).</li>
+		<li>The coloured squares should help you see good and bad possibilities. </li>
+			<ul>
+				<li>Light Blue - current position
+				<li>Green - multiple moves possible from this square</li>
+				<li>Light Green - only one possible move from this square</li>
+				<li>Red - No possible moves from this position - Game Over</li>
+				<li>Pink - Only one more move will be possible from this square</li>
+			</ul>
+		<li>Undo and Reset can help when you get stuck.</li>
+		<li>Have fun!</li>
+	</ul> 
+	
+}

@@ -3,12 +3,14 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
+GET     /                           	controllers.Application.index
 
-GET 	/knight_tour				controllers.Application.knightTour
-POST 	/knight_tour/jump/:r/:c 	controllers.Application.jump(r: Int, c: Int)
-POST 	/knight_tour/reset			controllers.Application.reset
-POST 	/knight_tour/undo			controllers.Application.undo
+GET 	/knight_tour_main				controllers.Application.knightTourMain
+GET 	/knight_tour_rules				controllers.Application.knightTourRules
+GET 	/knight_tour/:id				controllers.Application.knightTour(id: Int)
+POST 	/knight_tour/jump/:id/:r/:c		controllers.Application.jump(id: Int, r: Int, c: Int)
+POST 	/knight_tour/reset/:id			controllers.Application.reset(id: Int)
+POST 	/knight_tour/undo/:id			controllers.Application.undo(id: Int)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
