@@ -51,7 +51,7 @@ class Board {
       case head::_ => possibleMoves(head).size
   }
   
-  def totalMoves = moves.size //count
+  def totalMoves = moves.size
   
   def jump(newSquare: CoOrds) {
     if (board(newSquare).isEmpty && legalJump(newSquare)) {
@@ -73,18 +73,24 @@ class Board {
   case object Used extends Status
   case object Current extends Status
   case object OneMove extends Status
-  case object MultiplesMoves extends Status
+  case object MultipleMoves extends Status
   case object TwoFromEnd extends Status
   case object OneFromEnd extends Status
   case object Other extends Status
   
-  private val colorMap: Map[Status, String] = Map(Current -> "lightblue", OneMove -> "lightgreen", MultiplesMoves -> "green",
-      TwoFromEnd -> "pink", OneFromEnd -> "red", Used -> "lightgrey", Other -> "ghostwhite")
-  private def getSquareColour(status: Status) = colorMap.get(status)
+  private def getSquareColour(status: Status) = status match {
+	  case Current => "lightblue"
+	  case OneMove => "lightgreen"
+	  case MultipleMoves => "green"
+      case TwoFromEnd => "pink"
+      case OneFromEnd => "red"
+      case Used => "lightgrey"
+      case Other => "ghostwhite"
+  }
   
   def getSquareAttributes(coOrds: CoOrds) = { 
     val status = getSquareStatus(coOrds)
-    val style = (List("font: bold 48px Arial", "width:80px", "height:80px") ++ getSquareColour(status).map(c => "background-color:" + c).toList).mkString("style='", ";", "'")
+    val style = List("font: bold 48px Arial", "width:80px", "height:80px", "background-color:" + getSquareColour(status: Status)).mkString("style='", ";", "'")
     //(style :: List(Used, Current).filter(status ==).map(_=>"disabled='true'")).mkString(" ")
     style
   }
@@ -94,9 +100,9 @@ class Board {
     case head::_ if possibleMoves(head).contains(coOrds) => 
       possibleMoves(coOrds).size match  {
         case 0 => OneFromEnd 
-        case 1 => // The possible move for two moves ahead will always include the move one ahead
-          if (possibleMoves(possibleMoves(coOrds).head).size == 1) TwoFromEnd else OneMove
-        case _ => if ( (possibleMoves(coOrds).filter(c => possibleMoves(c).size > 1).size) == 0) OneFromEnd else MultiplesMoves
+        case _ if ( (possibleMoves(coOrds).filter(c => possibleMoves(c).size > 1).size) == 0) => TwoFromEnd
+        case 1 => OneMove
+        case _ => MultipleMoves
       }
     case _ => board(coOrds).map(_ => Used).getOrElse(Other)
   }
