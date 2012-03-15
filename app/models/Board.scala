@@ -69,16 +69,35 @@ class Board {
   
   def getSquareString(coOrds: CoOrds) = board(coOrds).map(_.toString).getOrElse("")
   
-  def getSquareStyle(coOrds: CoOrds) = moves match {
-    case head::_ if  head == coOrds => "background-color:lightblue"
+  abstract sealed class Status
+  case object Used extends Status
+  case object Current extends Status
+  case object OneMove extends Status
+  case object MultiplesMoves extends Status
+  case object TwoFromEnd extends Status
+  case object OneFromEnd extends Status
+  case object Other extends Status
+  
+  private val colorMap: Map[Status, String] = Map(Current -> "lightblue", OneMove -> "lightgreen", MultiplesMoves -> "green",
+      TwoFromEnd -> "pink", OneFromEnd -> "red")
+  private def getSquareColour(status: Status) = colorMap.get(status)
+  
+  def getSquareAttributes(coOrds: CoOrds) = { 
+    val status = getSquareStatus(coOrds)
+    val style = (List("font: bold 48px Arial", "width:100px", "height:100px") ++ getSquareColour(status).map(c => "background-color:" + c).toList).mkString("style='", ";", "'")
+    (style :: List(Used, Current).filter(status ==).map(_=>"disabled='true'")).mkString(" ")
+  }
+  
+  private def getSquareStatus(coOrds: CoOrds) = moves match {
+    case head::_ if  head == coOrds => Current
     case head::_ if possibleMoves(head).contains(coOrds) => 
       possibleMoves(coOrds).size match  {
-        case 0 => "background-color:red" 
+        case 0 => OneFromEnd 
         case 1 => // The possible move for two moves ahead will always include the move one ahead
-          if (possibleMoves(possibleMoves(coOrds).head).size == 1) "background-color:pink" else "background-color:lightgreen"
-        case _ => if ( (possibleMoves(coOrds).filter(c => possibleMoves(c).size > 1).size) == 0) "background-color:pink" else "background-color:green"
+          if (possibleMoves(possibleMoves(coOrds).head).size == 1) TwoFromEnd else OneMove
+        case _ => if ( (possibleMoves(coOrds).filter(c => possibleMoves(c).size > 1).size) == 0) OneFromEnd else MultiplesMoves
       }
-    case _ => ""
+    case _ => board(coOrds).map(_ => Used).getOrElse(Other)
   }
 }
 
@@ -108,6 +127,6 @@ object Board {
 
   def getSquareString(id: Int, coOrds: CoOrds) = boards(id).getSquareString(coOrds)
   
-  def getSquareStyle(id: Int, coOrds: CoOrds) = boards(id).getSquareStyle(coOrds)
+  def getSquareAttributes(id: Int, coOrds: CoOrds) = boards(id).getSquareAttributes(coOrds)
 
 }

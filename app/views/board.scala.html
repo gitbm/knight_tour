@@ -31,10 +31,9 @@
 	@for(r <- 0 until Board.ROWS) {
 		<tr>
 		@for(c <- 0 until Board.COLUMNS) {
-			<td width=40>
+			<td width=100 height=100>
                @form(routes.Application.jump(r, c)) {
-                   <button style="@Board.getSquareStyle(id, CoOrds(r, c))" 
-                           type="submit">@Board.getSquareString(id, CoOrds(r, c))</button>
+                   <button @Board.getSquareAttributes(id, CoOrds(r, c))>@Board.getSquareString(id, CoOrds(r, c))</button>
                }
  			</td>
 		}
