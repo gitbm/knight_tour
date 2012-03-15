@@ -31,7 +31,7 @@
 	@for(r <- 0 until Board.ROWS) {
 		<tr>
 		@for(c <- 0 until Board.COLUMNS) {
-			<td width=100 height=100>
+			<td width=80 height=80>
                @form(routes.Application.jump(r, c)) {
                    <button @Board.getSquareAttributes(id, CoOrds(r, c))>@Board.getSquareString(id, CoOrds(r, c))</button>
                }

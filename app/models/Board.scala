@@ -79,13 +79,14 @@ class Board {
   case object Other extends Status
   
   private val colorMap: Map[Status, String] = Map(Current -> "lightblue", OneMove -> "lightgreen", MultiplesMoves -> "green",
-      TwoFromEnd -> "pink", OneFromEnd -> "red")
+      TwoFromEnd -> "pink", OneFromEnd -> "red", Used -> "lightgrey", Other -> "ghostwhite")
   private def getSquareColour(status: Status) = colorMap.get(status)
   
   def getSquareAttributes(coOrds: CoOrds) = { 
     val status = getSquareStatus(coOrds)
-    val style = (List("font: bold 48px Arial", "width:100px", "height:100px") ++ getSquareColour(status).map(c => "background-color:" + c).toList).mkString("style='", ";", "'")
-    (style :: List(Used, Current).filter(status ==).map(_=>"disabled='true'")).mkString(" ")
+    val style = (List("font: bold 48px Arial", "width:80px", "height:80px", "opacity:10") ++ getSquareColour(status).map(c => "background-color:" + c).toList).mkString("style='", ";", "'")
+    //(style :: List(Used, Current).filter(status ==).map(_=>"disabled='true'")).mkString(" ")
+    style
   }
   
   private def getSquareStatus(coOrds: CoOrds) = moves match {
