@@ -7,15 +7,15 @@
 		<tr>
 			<td>
 				@form(routes.Application.reset()) {
-					<input type="submit" value="Reset">
+					<button style='font: bold 24px Arial;width:80px;height:40px'>Reset</button>
 				}
 			</td>
 			<td>
 				@form(routes.Application.undo()) {
-					<input type="submit" value="Undo">
+					<button style='font: bold 24px Arial;width:80px;height:40px'>Undo</button>
 				}
 			</td>
-			<td width = "150">
+			<td width = "450px">
 			</td>
 			<td>
 				<h3><a href="@routes.Application.knightTourRules">Rules</a></h3>

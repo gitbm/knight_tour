@@ -84,7 +84,7 @@ class Board {
   
   def getSquareAttributes(coOrds: CoOrds) = { 
     val status = getSquareStatus(coOrds)
-    val style = (List("font: bold 48px Arial", "width:80px", "height:80px", "opacity:10") ++ getSquareColour(status).map(c => "background-color:" + c).toList).mkString("style='", ";", "'")
+    val style = (List("font: bold 48px Arial", "width:80px", "height:80px") ++ getSquareColour(status).map(c => "background-color:" + c).toList).mkString("style='", ";", "'")
     //(style :: List(Used, Current).filter(status ==).map(_=>"disabled='true'")).mkString(" ")
     style
   }
