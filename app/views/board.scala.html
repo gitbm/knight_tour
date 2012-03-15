@@ -3,19 +3,15 @@
 @import helper._
 
 @main("Knight Tour") {
-	@if(!Board.validId(id)) {
-	<h1>ID is no longer valid.  <a href="@routes.Application.knightTourMain">Start Again</a></h1>
-	}else{
-	<h2>Knight Tour Solitaire</h2>
 	<table border="0" >	
 		<tr>
 			<td>
-				@form(routes.Application.reset(id)) {
+				@form(routes.Application.reset()) {
 					<input type="submit" value="Reset">
 				}
 			</td>
 			<td>
-				@form(routes.Application.undo(id)) {
+				@form(routes.Application.undo()) {
 					<input type="submit" value="Undo">
 				}
 			</td>
@@ -36,7 +32,7 @@
 		<tr>
 		@for(c <- 0 until Board.COLUMNS) {
 			<td width=40>
-               @form(routes.Application.jump(id, r, c)) {
+               @form(routes.Application.jump(r, c)) {
                    <button style="@Board.getSquareStyle(id, CoOrds(r, c))" 
                            type="submit">@Board.getSquareString(id, CoOrds(r, c))</button>
                }
@@ -45,6 +41,5 @@
 		</tr>
 	}
 	</table>
-	}
 }
 

@@ -8,23 +8,30 @@ import models._
 
 object Application extends Controller {
   
-  def doWithRedirect(id: Int)(f: => Unit) = Action {
+  val ID_KEY = "id"
+  
+  def doWithRedirect(f: => Unit) = { 
     f
-	Redirect(routes.Application.knightTour(id))
+	Redirect(routes.Application.knightTour)
   }
   
-  def index = knightTourMain//Action { Redirect(routes.Application.knightTourMain) }
-  //def index = Action { Ok(views.html.index()) }
+  def index = knightTourMain
  
-  def knightTourMain = Action { Redirect(routes.Application.knightTour(Board.newId)) }
+  def knightTourMain = Action { Redirect(routes.Application.knightTour) }
   
   def knightTourRules = Action {  Ok(views.html.rules()) }
 	
-  def knightTour(id: Int) = Action { Ok(views.html.board(id)) }
-	
-  def jump(id: Int, r : Int, c : Int) = doWithRedirect(id) { Board.jump(id, CoOrds(r, c)) }
-  
-  def reset(id: Int) = doWithRedirect(id) { Board.reset(id) }
+  def getId(implicit req: Request[AnyContent]) = req.session.get(ID_KEY).map(_.toInt ).filter(Board.validId(_)).getOrElse { Board.newId }
+	    
+  def knightTour = Action { implicit req =>
+    val id = getId(req)
+    Ok(views.html.board(id)).withSession(ID_KEY -> id.toString)
+  }
+	      
+  def jump(r : Int, c : Int) = Action { implicit req => doWithRedirect { Board.jump(getId, CoOrds(r, c)) } }
 
-  def undo(id: Int) =  doWithRedirect(id) { Board.undo(id) }
+  def reset = Action { implicit req => doWithRedirect { Board.reset(getId) } }
+
+  def undo =  Action { implicit req => doWithRedirect{ Board.undo(getId) } }
+
 }

@@ -13,10 +13,10 @@ case class CoOrds(row: Int, col: Int) {
 }
 
 case class BoardData(rows : Int, cols: Int) {  
-  private var board : Array[Array[Option[Int]]] = _
- 
-  def reset { board = Array.fill(rows, rows)(Option.empty[Int]) }
-  {reset}
+  private var board : Array[Array[Option[Int]]] = newBoard 
+  private def newBoard = Array.fill(rows, rows)(Option.empty[Int])
+  
+  def reset { board = newBoard }
   def apply(coOrds : CoOrds) = board(coOrds.row)(coOrds.col)
   def update(coOrds : CoOrds, num : Int) {  board(coOrds.row)(coOrds.col) = Some(num) }
   def clear(coOrds : CoOrds) { board(coOrds.row)(coOrds.col) = None }
@@ -25,13 +25,10 @@ case class BoardData(rows : Int, cols: Int) {
 class Board {
   import Board._
   
-  var board = BoardData(ROWS, COLUMNS)
-  var count : Int = _;
-  var moves : List[CoOrds] = _;
+  private var board = BoardData(ROWS, COLUMNS)
+  private var moves : List[CoOrds] = Nil;
 
-  def init { count = 0; moves = Nil; }
-  {init}
-  def reset { init; board.reset }
+  def reset {  moves = Nil; ; board.reset }
   
   def isKnightMove(start: CoOrds, finish: CoOrds) = BASIC_KNIGHT_MOVES.contains(start.diff(finish)) 
   
@@ -54,20 +51,19 @@ class Board {
       case head::_ => possibleMoves(head).size
   }
   
-  def totalMoves = count
+  def totalMoves = moves.size //count
   
   def jump(newSquare: CoOrds) {
     if (board(newSquare).isEmpty && legalJump(newSquare)) {
-      count += 1
       moves ::= newSquare
-      board(newSquare) = count
+      board(newSquare) = totalMoves
     }
   }
   
   def undo { 
     moves = moves match {
       case Nil => moves
-      case head::tail => { count -= 1; board.clear(head); tail }
+      case head::tail => { board.clear(head); tail }
     }
   }
   
@@ -84,8 +80,8 @@ class Board {
       }
     case _ => ""
   }
-
 }
+
 object Board {
   
   val ROWS = 8
@@ -108,7 +104,7 @@ object Board {
   
   def possibleMoves(id: Int) = boards(id).possibleMoves
 
-  def totalMoves(id: Int) = boards(id).count
+  def totalMoves(id: Int) = boards(id).totalMoves
 
   def getSquareString(id: Int, coOrds: CoOrds) = boards(id).getSquareString(coOrds)
   
