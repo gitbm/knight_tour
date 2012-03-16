@@ -3,22 +3,22 @@
 @import helper._
 
 @main("Knight Tour") {
-	<table border="0" >	
+	<table class="topTable">	
 		<tr>
 			<td>
 				@form(routes.Application.reset()) {
-					<button style='font: bold 24px Arial;width:80px;height:40px'>Reset</button>
+					<button class="topButton">Reset</button>
 				}
 			</td>
 			<td>
 				@form(routes.Application.undo()) {
-					<button style='font: bold 24px Arial;width:80px;height:40px'>Undo</button>
+					<button class="topButton">Undo</button>
 				}
 			</td>
-			<td width = "450px">
+			<td class="topSpace">
 			</td>
 			<td>
-				<h3><a href="@routes.Application.knightTourRules">Rules</a></h3>
+				<h3 id="topRulesLink"><a href="@routes.Application.knightTourRules">Rules</a></h3>
 			</td>
 			
 		</tr>
@@ -27,13 +27,15 @@
 	@if(Board.possibleMoves(id) == 0) {
 		<h3>Nowhere else to go but you managed @Board.totalMoves(id) moves.</h3>
 	}
-	<table border="1" >	
-	@for(r <- 0 until Board.ROWS) {
+	<table class="boardTable">	
+	@for(row <- 0 until Board.ROWS) {
 		<tr>
-		@for(c <- 0 until Board.COLUMNS) {
-			<td width=80 height=80>
-               @form(routes.Application.jump(r, c)) {
-                   <button @Board.getSquareAttributes(id, CoOrds(r, c))>@Board.getSquareString(id, CoOrds(r, c))</button>
+		@for(col <- 0 until Board.COLUMNS) {
+			<td>
+                @form(routes.Application.jump(row, col)) {
+                  @Some(Board.getSquareData(id, row, col)).map{case (attr,label) => 
+                  	<button class="boardButton" @attr >@label</button>
+                  }
                }
  			</td>
 		}

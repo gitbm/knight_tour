@@ -9,7 +9,7 @@ GET 	/knight_tour_main				controllers.Application.knightTourMain
 GET 	/knight_tour_rules				controllers.Application.knightTourRules
 
 GET 	/knight_tour					controllers.Application.knightTour
-POST 	/knight_tour/jump/:r/:c			controllers.Application.jump(r: Int, c: Int)
+POST 	/knight_tour/jump/:row/:col		controllers.Application.jump(row: Int, col: Int)
 POST 	/knight_tour/reset				controllers.Application.reset
 POST 	/knight_tour/undo				controllers.Application.undo
 

@@ -28,7 +28,7 @@ object Application extends Controller {
     Ok(views.html.board(id)).withSession(ID_KEY -> id.toString)
   }
 	      
-  def jump(r : Int, c : Int) = Action { implicit req => doWithRedirect { Board.jump(getId, CoOrds(r, c)) } }
+  def jump(row : Int, col : Int) = Action { implicit req => doWithRedirect { Board.jump(getId, row, col) } }
 
   def reset = Action { implicit req => doWithRedirect { Board.reset(getId) } }
 
