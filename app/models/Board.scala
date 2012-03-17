@@ -86,14 +86,12 @@ private class Board {
   
   def totalMoves = moves.size
 
-  def getSquareData(coOrds: CoOrds) = (getSquareAttributes(coOrds), getSquareString(coOrds))
+  def getSquareData(coOrds: CoOrds) = (getSquareStatus(coOrds).toString, getSquareString(coOrds))
   
   private var board = BoardData(ROWS, COLUMNS)
   private var moves : List[CoOrds] = Nil;
 
   private def getSquareString(coOrds: CoOrds) = board(coOrds).map(_.toString).getOrElse("")
-  
-  private def getSquareAttributes(coOrds: CoOrds) = "style='background-color:" + getSquareColour(coOrds) + "'";
   
   private def isKnightMove(start: CoOrds, finish: CoOrds) = BASIC_KNIGHT_MOVES.contains(start.diff(finish)) 
   
@@ -114,18 +112,6 @@ private class Board {
   private def possibleMoves: Int = moves match {
       case Nil => 64
       case head::_ => possibleMoves(head).size
-  }
-  
-  private def getSquareColour(coOrds: CoOrds): String = getSquareColour(getSquareStatus(coOrds))
-
-  private def getSquareColour(status: Status) = status match {
-	  case Current => "lightblue"
-	  case OneMove => "lightgreen"
-	  case MultipleMoves => "green"
-      case TwoFromEnd => "pink"
-      case OneFromEnd => "red"
-      case Used => "lightgrey"
-      case Other => "ghostwhite"
   }
   
   private def getSquareStatus(coOrds: CoOrds) = moves match {

@@ -33,10 +33,10 @@
 		@for(col <- 0 until Board.COLUMNS) {
 			<td>
                 @form(routes.Application.jump(row, col)) {
-                  @Some(Board.getSquareData(id, row, col)).map{case (attr,label) => 
-                  	<button class="boardButton" @attr >@label</button>
+                  @Some(Board.getSquareData(id, row, col)).map{ case (status, label) => 
+                  	<button id="boardButton" class="@("boardButton" + status)" >@label</button>
                   }
-               }
+                }
  			</td>
 		}
 		</tr>
